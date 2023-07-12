@@ -1,0 +1,75 @@
+﻿@page
+@model Web_Store.Pages.CreateModel
+@{
+    bool showErrorMessage = Model.errorMessage.Length > 0;
+    bool showSuccessMessage = Model.successMeessage.Length > 0;
+}
+@{
+    bool IsPost = Request.Method == "POST";
+}
+
+
+<br />
+<h2>Welcome to the New Client Page</h2>
+
+@if (IsPost)
+{
+    if (Model.errorMessage.Length > 0)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>@Model.errorMessage</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    else if (Model.successMeessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>@Model.successMeessage</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+<form method="post">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@Model.ClientInfo.name" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="email" class="form-control" name="Email" value="@Model.ClientInfo.email" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Phone</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-label" name="phone" value="@Model.ClientInfo.phone" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Address</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="address" value="@Model.ClientInfo.address" />
+        </div>
+    </div>
+        
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3">
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-outline-danger" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
